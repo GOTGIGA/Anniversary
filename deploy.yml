@@ -30,4 +30,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist # โฟลเดอร์ที่ Vite build ออกมา
-          branch: gh-pages # branch ที่จะใช้เก็บไฟล์สำหรับแสดงหน้าเว็บ
+          branch: gh-pages 
