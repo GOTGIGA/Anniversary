@@ -5,9 +5,9 @@
                 <span class="display-1">❤️</span>
             </div>
             <h2 class="font-handwriting text-pink mb-3">จำได้ไหมว่า...</h2>
-            <p class="text-muted mb-4">เราเริ่มคบกันวันที่เท่าไหร่?</p>
+            <p class="text-muted mb-4">เราเริ่มคบกันวันที่เท่าไหร่กันน้าาา ?</p>
             <div class="mb-4">
-                <DatePicker input-class="form-control" v-model="selectedDate" dateFormat="dd/mm/yy"
+                <DatePicker input-class="form-control text-center" v-model="selectedDate" dateFormat="dd MM yy"
                     placeholder="เลือกวันที่ของเรา" class="w-100" :touchUI="true" />
             </div>
 
