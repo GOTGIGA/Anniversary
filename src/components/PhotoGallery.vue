@@ -20,7 +20,7 @@
                     <div class="card-back d-flex align-items-center justify-content-center">
                         <div class="back-content">
                             <span class="back-emoji">{{ photo.emoji }}</span>
-                            <p class="back-text">Special Moment</p>
+                            <p class="back-text">{{ photo.desc }}</p>
                         </div>
 
                         <button class="flip-btn" @click.stop="toggleFlip(index)">
@@ -38,12 +38,19 @@ import { ref } from 'vue';
 import PImage from 'primevue/image';
 import photo1 from '@/assets/IMG_20241116_063645.jpg';
 import photo2 from '@/assets/IMG_20250213_114505.jpg';
-import photo3 from '@/assets/IMG_20251123_123700.jpg';
-
+import photo3 from '@/assets/image3.jpg';
+import photo4 from '@/assets/image4.jpg';
+import photo5 from '@/assets/Graduation.jpg';
+import photo6 from '@/assets/Graduation2.jpg';
+import photo7 from '@/assets/image7.jpg'
 const photoList = ref([
-    { emoji: '🍕', path: photo1, isFlipped: false },
-    { emoji: '🍦', path: photo2, isFlipped: false },
-    { emoji: '🌸', path: photo3, isFlipped: false }
+    { emoji: '🏝️🌊', desc: 'เกาะช้างงงง', path: photo1, isFlipped: false },
+    { emoji: '🏝️🌊', desc: 'เกาะกูด มันกูดมากตอนมีเธอ', path: photo2, isFlipped: false },
+    { emoji: '🏝️🌊', desc: 'ตกหลุมรักภาพนี้มาก ❤️', path: photo3, isFlipped: false },
+    { emoji: '🏝️🌊', desc: 'เกาะล้านนน', path: photo4, isFlipped: false },
+    { emoji: '🎓', desc: 'ปริญญาใจ', path: photo5, isFlipped: false },
+    { emoji: '🎓', desc: 'ปริญญาใจ', path: photo6, isFlipped: false },
+    { emoji: '❤️', desc: 'สมัยรุ่นๆ เลยนะน้องง', path: photo7, isFlipped: false },
 ]);
 
 const toggleFlip = (index) => {

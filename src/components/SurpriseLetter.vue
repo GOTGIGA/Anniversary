@@ -10,7 +10,8 @@
                 อยากบอกว่ารักเธอมากๆ และจะรักให้มากขึ้นในทุกๆ วันที่ผ่านไปเลย
                 ขอให้เรามีกันแบบนี้ไปนานๆ นะ
             </p>
-            <div class="text-end font-handwriting fs-2 text-pink">- รักที่สุดเลย -</div>
+            <div class="text-end font-handwriting fs-2 text-pink">- รักฟิล์มที่สุดเลย -</div>
+            <SurpriseGift></SurpriseGift>
         </div>
     </div>
 </template>
@@ -19,6 +20,7 @@
 import { ref, nextTick } from 'vue';
 import Button from 'primevue/button';
 import confetti from 'canvas-confetti';
+import SurpriseGift from './SurpriseGift.vue';
 
 const isOpen = ref(false);
 const letterRef = ref(null);

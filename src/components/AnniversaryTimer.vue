@@ -8,8 +8,7 @@
         </div>
 
         <div class="row g-2 justify-content-center">
-            <div v-for="(val, unit) in displayData" :key="unit"
-                :class="viewMode === 'total' ? 'col-3' : 'col-4 col-md-2'">
+            <div v-for="(val, unit) in displayData" :key="unit" :class="viewMode === 'total' ? 'col-3' : 'col-3'">
                 <div class="timer-box p-2 rounded-3 shadow-sm border border-white">
                     <div class="fw-bold text-pink" :class="viewMode === 'total' ? 'fs-2' : 'fs-3'">
                         {{ val }}
@@ -31,8 +30,8 @@ const store = useAnniversaryStore()
 
 const viewMode = ref('detailed');
 const options = ref([
-    { label: 'Years', value: 'detailed' },
-    { label: 'Days', value: 'total' }
+    { label: 'ปี', value: 'detailed' },
+    { label: 'วัน', value: 'total' }
 ]);
 
 const now = ref(moment());

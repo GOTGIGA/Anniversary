@@ -15,7 +15,8 @@
     </router-view>
   </div>
 </template>
-
+<script setup>
+</script>
 <style>
 .main-layout {
   min-height: 100vh;
