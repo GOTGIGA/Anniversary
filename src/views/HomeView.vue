@@ -23,7 +23,8 @@
         <SurpriseLetter />
 
         <footer class="mt-4 text-center text-muted fst-italic pb-5">
-          ❤️ สร้างด้วยความรักสำหรับเจ้าฟิล์ม ❤️
+          <div>❤️ สร้างด้วยความรักสำหรับเจ้าฟิล์ม ❤️</div>
+          <Comment />
         </footer>
 
       </div>
@@ -45,7 +46,7 @@ import AnniversaryTimer from '@/components/AnniversaryTimer.vue'
 import PhotoGallery from '@/components/PhotoGallery.vue'
 import SurpriseLetter from '@/components/SurpriseLetter.vue'
 import MusicPlayer from '@/components/MusicPlayer.vue';
-
+import Comment from '@/components/Comment.vue';
 import { useAnniversaryStore } from '@/stores/Anniversary'
 import moment from 'moment'
 

@@ -1,4 +1,5 @@
 <template>
+  <Toast />
   <div class="main-layout glass-morphism">
     <div class="heart-container">
       <i v-for="n in 3" :key="'left-' + n" class="pi pi-heart-fill heart side-left"
@@ -16,6 +17,7 @@
   </div>
 </template>
 <script setup>
+import Toast from 'primevue/toast';
 </script>
 <style>
 .main-layout {

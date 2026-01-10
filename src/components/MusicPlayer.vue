@@ -29,8 +29,11 @@
         <Dialog v-model:visible="showLyrics" modal header="Lyrics" :style="{ width: '90vw', maxWidth: '400px' }"
             class="lyrics-dialog">
             <template #header>
-                <div class="sound-waves me-2" @click="togglePlay">
-                    <div v-for="i in 4" :key="i" class="wave" :class="{ 'animate': isPlaying }"></div>
+                <div class="album-art-mini me-2 shadow-sm position-relative">
+                    <img :src="ImageIntuated" alt="Art">
+                    <div class="sound-waves me-2 position-absolute bottom-0" style="left:10px">
+                        <div v-for="i in 4" :key="i" class="wave" :class="{ 'animate': isPlaying }"></div>
+                    </div>
                 </div>
                 <span>🎶 เนื้อเพลง</span>
             </template>
@@ -134,9 +137,7 @@ const togglePlay = () => {
 };
 
 onMounted(() => {
-
     togglePlay()
-
 });
 
 const onLoadedMetadata = () => {

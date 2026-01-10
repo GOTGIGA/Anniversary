@@ -15,8 +15,7 @@
                 @click="checkAnswer" />
 
             <transition name="fade">
-                <p v-if="error" class="text-danger mt-3 small">{{ errorValue }}
-                </p>
+                <p v-if="error" class="text-danger mt-3 small">{{ errorValue }}</p>
             </transition>
         </div>
     </div>
