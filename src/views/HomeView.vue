@@ -14,12 +14,18 @@
           <p class="fs-4 text-pink-light font-handwriting">To the most special person in my life</p>
         </header>
 
-        <MusicPlayer />
+        <div class="music-player-placeholder" ref="placeholderRef"></div>
+
+        <Teleport to="body">
+          <div :class="['music-teleport-wrapper', { 'is-sticky': isSticky }]" :style="stickyStyle">
+            <div class="container-width-limit">
+              <MusicPlayer ref="playerRef" />
+            </div>
+          </div>
+        </Teleport>
 
         <AnniversaryTimer />
-
         <PhotoGallery />
-
         <SurpriseLetter />
 
         <footer class="mt-4 text-center text-muted fst-italic pb-5">
@@ -29,6 +35,7 @@
 
       </div>
     </div>
+
     <transition name="fade">
       <div v-if="showScrollButton" class="scroll-down-hint" @click="scrollDown">
         <span class="hint-text font-handwriting">เลื่อนลงดูสิ...</span>
@@ -41,26 +48,20 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue'
 import AnniversaryTimer from '@/components/AnniversaryTimer.vue'
 import PhotoGallery from '@/components/PhotoGallery.vue'
 import SurpriseLetter from '@/components/SurpriseLetter.vue'
-import MusicPlayer from '@/components/MusicPlayer.vue';
-import Comment from '@/components/Comment.vue';
+import MusicPlayer from '@/components/MusicPlayer.vue'
+import Comment from '@/components/Comment.vue'
 import { useAnniversaryStore } from '@/stores/Anniversary'
 import moment from 'moment'
 
-// --- Store & Anniversary Logic ---
 const store = useAnniversaryStore()
-
 const anniversaryYears = computed(() => {
   const anniversaryDate = store.getANVDate
   const today = moment()
-
-  // เช็คว่าวันนี้เป็นวันครบรอบ (วันที่และเดือนตรงกัน) หรือไม่
-  const isAnniversaryDay = today.format('DD-MM') === moment(anniversaryDate).format('DD-MM')
-
-  if (isAnniversaryDay) {
+  if (today.format('DD-MM') === moment(anniversaryDate).format('DD-MM')) {
     return today.diff(anniversaryDate, 'years')
   }
   return null
@@ -72,43 +73,101 @@ const getOrdinal = (n) => {
   return (s[(v - 20) % 10] || s[v] || s[0]);
 }
 
-// --- Scroll Logic ---
+// --- Logic การจัดการตำแหน่ง ---
 const showScrollButton = ref(false)
+const isSticky = ref(false)
+const placeholderRef = ref(null)
+const initialTop = ref(0)
 
-const checkScrollRequirement = () => {
-  // 1. ตำแหน่ง Scroll อยู่ด้านบน (ห่างจากขอบไม่เกิน 100px)
-  const isAtTop = window.scrollY < 100
+const stickyStyle = computed(() => {
+  // ใช้ transform แทนการเปลี่ยน position เป็น fixed โดยตรงในบางจังหวะ 
+  // เพื่อไม่ให้ Component รีโหลดใหม่
+  if (isSticky.value) {
+    return {
+      position: 'fixed',
+      top: '15px',
+      left: '0',
+      right: '0',
+      zIndex: 2000
+    }
+  } else {
+    return {
+      position: 'absolute',
+      top: `${initialTop.value}px`,
+      left: '0',
+      right: '0',
+      zIndex: 2000
+    }
+  }
+})
 
-  // 2. เช็คว่าความสูงเนื้อหาล้นหน้าจอออกมาหรือไม่
-  const hasMoreContent = document.documentElement.scrollHeight > window.innerHeight + 60
+const updatePositions = () => {
+  if (placeholderRef.value) {
+    const rect = placeholderRef.value.getBoundingClientRect()
+    initialTop.value = rect.top + window.scrollY
+  }
 
-  showScrollButton.value = isAtTop && hasMoreContent
+  const scrollY = window.scrollY
+  showScrollButton.value = scrollY < 100 && (document.documentElement.scrollHeight > window.innerHeight + 60)
+  isSticky.value = scrollY > (initialTop.value - 15)
 }
 
 const scrollDown = () => {
-  window.scrollTo({
-    top: window.innerHeight * 0.6,
-    behavior: 'smooth'
-  })
+  window.scrollTo({ top: window.innerHeight * 0.6, behavior: 'smooth' })
 }
 
 onMounted(() => {
-  // เช็คทันทีที่ mount และหลังจากรูปภาพ/ข้อมูลโหลดเสร็จเล็กน้อย
-  checkScrollRequirement()
-  setTimeout(checkScrollRequirement, 1000)
+  nextTick(() => {
+    updatePositions()
+    setTimeout(updatePositions, 500) // คำนวณใหม่สั้นๆ เพื่อความเป๊ะ
+  })
 
-  window.addEventListener('scroll', checkScrollRequirement)
-  window.addEventListener('resize', checkScrollRequirement)
+  window.addEventListener('scroll', updatePositions)
+  window.addEventListener('resize', updatePositions)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', checkScrollRequirement)
-  window.removeEventListener('resize', checkScrollRequirement)
+  window.removeEventListener('scroll', updatePositions)
+  window.removeEventListener('resize', updatePositions)
 })
 </script>
 
 <style scoped>
-/* --- Colors --- */
+.music-player-placeholder {
+  min-height: 80px;
+  /* ความสูงเท่าเครื่องเล่นเพลง */
+  width: 100%;
+}
+
+.music-teleport-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  /* ใช้ transition เฉพาะ top และ transform เพื่อไม่ให้รบกวนการเล่นเพลง */
+  transition: top 0.4s ease, transform 0.4s ease, opacity 0.3s ease;
+}
+
+.music-teleport-wrapper.is-sticky {
+  pointer-events: none;
+}
+
+.container-width-limit {
+  width: 100%;
+  max-width: 540px;
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.is-sticky :deep(.music-player-badge) {
+  transform: scale(0.9);
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(213, 63, 140, 0.2) !important;
+}
+
+/* ส่วนดีไซน์ดั้งเดิม */
 .text-pink {
   color: #d53f8c;
 }
@@ -117,10 +176,8 @@ onUnmounted(() => {
   color: #f687b3;
 }
 
-/* --- Typography --- */
 .font-handwriting {
   font-family: 'Caveat', cursive;
-  /* อย่าลืม import font ใน main.css */
 }
 
 .ordinal {
@@ -132,7 +189,6 @@ onUnmounted(() => {
   text-transform: lowercase;
 }
 
-/* --- Scroll Indicator Styles --- */
 .scroll-down-hint {
   position: fixed;
   top: 83vh;
@@ -164,7 +220,6 @@ onUnmounted(() => {
   animation: bounce-float 2s infinite;
 }
 
-/* --- Animations --- */
 @keyframes bounce-float {
 
   0%,
@@ -195,7 +250,6 @@ onUnmounted(() => {
   transform: translateY(15px);
 }
 
-/* --- Extra Mobile Adjustments --- */
 @media (max-width: 576px) {
   .display-5 {
     font-size: 2.2rem;

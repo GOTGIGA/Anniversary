@@ -1,6 +1,6 @@
 <template>
-    <div class="text-center my-5">
-        <Button label="กดเพื่อรับของขวัญพิเศษจากเค้า ❤️" icon="pi pi-gift"
+    <div class="text-center my-2">
+        <Button label="ของขวัญสุดพิเศษ ❤️" icon="pi pi-gift"
             class="p-button-rounded p-button-lg p-button-gradient shadow-lg px-5 py-3 pulse-animation"
             @click="showSurprise" />
 
