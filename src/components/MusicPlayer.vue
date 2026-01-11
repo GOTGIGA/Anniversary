@@ -64,7 +64,7 @@
 <script setup>
 import { ref, onMounted, nextTick } from 'vue';
 import Dialog from 'primevue/dialog';
-import Infatuated from '@/assets/music/Infatuated.mp3'
+import Infatuated from '@/assets/Music/Infatuated.mp3'
 import ImageIntuated from '@/assets/infatuated.jpg';
 const isPlaying = ref(false);
 const audioRef = ref(null);
