@@ -20,6 +20,12 @@
 import Toast from 'primevue/toast';
 </script>
 <style>
+body {
+  font-family: 'FCLamoon', 'Montserrat', sans-serif !important;
+}
+footer {
+  font-family: 'FCLamoon', 'Montserrat', sans-serif !important;
+}
 .main-layout {
   min-height: 100vh;
   background: linear-gradient(135deg, #fff5f7 0%, #fed7e2 100%);
@@ -90,5 +96,20 @@ import Toast from 'primevue/toast';
 .hug-enter-from {
   opacity: 0;
   transform: scale(1.02);
+}
+@font-face {
+  font-family: 'FCLamoon';
+  src: url('@/assets/font/FC Lamoon Regular ver 1.00.ttf') format('truetype');
+  unicode-range: U+0E01-0E5B; 
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FCLamoon';
+  src: url('@/assets/font/FC-Lamoon-Bold ver 1.00.ttf') format('truetype');
+  unicode-range: U+0E01-0E5B;
+  font-weight: bold;
+  font-style: normal;
 }
 </style>

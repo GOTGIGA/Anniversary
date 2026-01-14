@@ -10,10 +10,10 @@
         <div class="row g-2 justify-content-center">
             <div v-for="(val, unit) in displayData" :key="unit" :class="viewMode === 'total' ? 'col-3' : 'col-3'">
                 <div class="timer-box p-2 rounded-3 shadow-sm border border-white">
-                    <div class="fw-bold text-pink" :class="viewMode === 'total' ? 'fs-2' : 'fs-3'">
-                        {{ val }}
+                    <div class="fw-bold text-pink" :class="viewMode === 'total' ? 'fs-5' : 'fs-4'">
+                        {{ Number(val) ? Number(val).toLocaleString() : val }}
                     </div>
-                    <div class="text-muted x-small">{{ unit }}</div>
+                    <div class="text-muted">{{ unit }}</div>
                 </div>
             </div>
         </div>

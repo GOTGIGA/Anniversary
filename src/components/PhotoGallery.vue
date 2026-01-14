@@ -1,6 +1,6 @@
 <template>
     <div class="text-center mb-5">
-        <p class="text-muted text-decoration-underline mb-4 memory-title">
+        <p class="text-muted text-decoration-underline mb-4 memory-title fs-4">
             ความทรงจำของเรา
         </p>
 
@@ -134,7 +134,7 @@ const toggleFlip = (index) => {
 }
 
 .back-text {
-    font-size: 0.7rem;
+    font-size: 1rem;
     color: #ed64a6;
     margin-top: 5px;
 }

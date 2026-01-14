@@ -4,7 +4,7 @@
             :class="{ 'is-playing': isPlaying }">
 
             <div class="d-flex align-items-center w-100 px-1">
-                <div class="album-art-mini me-2 shadow-sm position-relative" @click="showLyrics = true">
+                <div class="album-art-mini me-2 shadow-sm position-relative" @click="showLyrics = true,updateActiveLyric()">
                     <img :src="ImageIntuated" alt="Art">
                     <div class="sound-waves me-2 position-absolute bottom-0" style="left:10px">
                         <div v-for="i in 4" :key="i" class="wave" :class="{ 'animate': isPlaying }"></div>
@@ -12,7 +12,7 @@
                 </div>
 
 
-                <div class="song-info me-3 flex-grow-1 ms-4" @click="showLyrics = true">
+                <div class="song-info me-3 flex-grow-1 ms-4" @click="showLyrics = true,updateActiveLyric()">
                     <div class="song-name">Infatuated - Rangga Jones ❤️</div>
                     <div class="mini-progress-container mt-1">
                         <input type="range" class="song-slider" min="0" :max="duration" step="0.1" v-model="currentTime"
@@ -27,7 +27,7 @@
         </div>
 
         <Dialog v-model:visible="showLyrics" modal header="Lyrics" :style="{ width: '90vw', maxWidth: '400px' }"
-            class="lyrics-dialog">
+            class="lyrics-dialog" @hide="showLyrics = false,updateActiveLyric()">
             <template #header>
                 <div class="album-art-mini me-2 shadow-sm position-relative">
                     <img :src="ImageIntuated" alt="Art">
@@ -35,7 +35,7 @@
                         <div v-for="i in 4" :key="i" class="wave" :class="{ 'animate': isPlaying }"></div>
                     </div>
                 </div>
-                <span>🎶 เนื้อเพลง</span>
+                <span class="fs-4">🎶 เนื้อเพลง</span>
             </template>
             <div class="lyrics-container" ref="lyricsContainer">
                 <div v-for="(line, index) in lyrics" :key="index"
@@ -48,8 +48,8 @@
                 </div>
             </div>
             <template #footer>
-                <div class="text-center w-100 text-muted small pb-2">
-                    กำลังเล่นเพลงพิเศษสำหรับคุณ... ({{ formatTime(currentTime) }} / {{ formatTime(duration) }})
+                <div class="text-center w-100 text-muted pb-2">
+                    <span class="fs-5">กำลังเล่นเพลงพิเศษสำหรับคุณ...</span> ({{ formatTime(currentTime) }} / {{ formatTime(duration) }})
                 </div>
             </template>
         </Dialog>
@@ -73,7 +73,11 @@ const activeLineRef = ref(null);
 const showLyrics = ref(false);
 const currentTime = ref(0);
 const duration = ref(0);
+const emit = defineEmits(['activeLyric'])
 
+function updateActiveLyric() {
+  emit('activeLyric', showLyrics.value) 
+}
 const lyrics = [
     { time: 0, text: "🎶", subText: "(Intro - เพลงของเรา)" },
     { time: 32.34, text: "Sweet like caramel", subText: "หวานเหมือนคาราเมล" },
@@ -319,7 +323,7 @@ const onTimeUpdate = () => {
 }
 
 .sub-text {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     line-height: 1.3;
     display: block;
     color: #A0AEC0;

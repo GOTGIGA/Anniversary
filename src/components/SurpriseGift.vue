@@ -1,7 +1,7 @@
 <template>
     <div class="text-center my-2">
         <Button label="ของขวัญสุดพิเศษ ❤️" icon="pi pi-gift"
-            class="p-button-rounded p-button-lg p-button-gradient shadow-lg px-5 py-3 pulse-animation"
+            class="p-button-rounded p-button-lg p-button-gradient shadow-lg px-5 py-4 fs-2 pulse-animation"
             @click="showSurprise" />
 
         <Dialog v-model:visible="visible" modal header="Surprise! 🎉" :style="{ width: '90vw', maxWidth: '450px' }"
@@ -11,8 +11,8 @@
                     <img :src="airpod4" alt="Gift for you" class="img-fluid rounded-4 shadow" />
                 </div>
 
-                <h4 class="font-handwriting text-pink mb-2">เค้ามีของจะให้ด้วยนะ!</h4>
-                <p class="text-muted mb-4 small">รอรับได้เลย ของกำลังเดินทางไปหาแล้วจ้าาาา </p>
+                <h4 class="font-handwriting text-pink mb-2 fs-2">เค้ามีของจะให้ด้วยนะ!</h4>
+                <p class="text-muted mb-4 fs-5">รอรับได้เลย ของกำลังเดินทางไปหาแล้วจ้าาาา </p>
 
                 <a :href="shopeeTrackingUrl" target="_blank"
                     class="btn-shopee d-flex align-items-center justify-content-center gap-2">

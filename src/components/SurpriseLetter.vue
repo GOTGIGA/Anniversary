@@ -1,12 +1,12 @@
 <template>
     <div class="text-center">
-        <Button v-if="!isOpen" label="กดตรงนี้สิ" icon="pi pi-heart"
-            class="p-button-rounded p-button-lg p-button-pink shadow-lg px-5 py-3" @click="handleOpen" />
+        <Button v-if="!isOpen" label="กดตรงนี้สิ"  icon="pi pi-heart"
+            class="p-button-rounded p-button-lg p-button-pink shadow-lg px-4 py-2 fs-4" @click="handleOpen" />
 
         <div v-else ref="letterRef" class="card border-0 glass-card p-4 text-start mt-4 shadow-sm animate-fade">
             <h3 class="font-handwriting text-pink mb-3">ถึง คนเก่งของเค้า...</h3>
-            <p class="text-dark opacity-75">
-                ขอบคุณที่อยู่ข้างกันมาตลอดนะ ขอบคุณที่คอยเป็นกำลังใจให้ในทุกๆ เรื่อง
+            <p class="text-dark opacity-75 fs-5 mb-4">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ขอบคุณที่อยู่ข้างกันมาตลอดนะ ขอบคุณที่คอยเป็นกำลังใจให้ในทุกๆ เรื่อง
                 อยากบอกว่ารักเธอมากๆ และจะรักให้มากขึ้นในทุกๆ วันที่ผ่านไปเลย
                 ขอให้เรามีกันแบบนี้ไปนานๆ นะ
             </p>
