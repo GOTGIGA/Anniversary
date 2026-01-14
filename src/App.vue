@@ -99,7 +99,7 @@ footer {
 }
 @font-face {
   font-family: 'FCLamoon';
-  src: url('@/assets/font/FC Lamoon Regular ver 1.00.ttf') format('truetype');
+  src: url('@/assets/font/FC-Lamoon-Regular-ver.ttf') format('truetype');
   unicode-range: U+0E01-0E5B; 
   font-weight: normal;
   font-style: normal;
@@ -107,7 +107,7 @@ footer {
 
 @font-face {
   font-family: 'FCLamoon';
-  src: url('@/assets/font/FC-Lamoon-Bold ver 1.00.ttf') format('truetype');
+  src: url('@/assets/font/FC-Lamoon-Bold.ttf') format('truetype');
   unicode-range: U+0E01-0E5B;
   font-weight: bold;
   font-style: normal;
