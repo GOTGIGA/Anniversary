@@ -10,7 +10,12 @@
 
                 <div class="card-inner">
                     <div class="card-front polaroid-frame">
-                        <p-image :src="photo.path" alt="Our memory" preview imageClass="memory-img" />
+                        <p-image :src="photo.path" alt="Our memory" preview imageClass="memory-img" :pt="{
+                            toolbar: {
+                                class: 'start-50  d-flex justify-content-center ',
+                                style: 'top: 90vh; left: 50%; transform: translateX(-50%);'
+                            }
+                        }" />
 
                         <button class="flip-btn" @click.stop="toggleFlip(index)">
                             <i class="pi pi-sync"></i>
@@ -159,6 +164,6 @@ const toggleFlip = (index) => {
 }
 
 .photo-container:hover {
-    z-index: 100;
+    z-index: 1001;
 }
 </style>

@@ -5,13 +5,13 @@
                 <span class="display-1">❤️</span>
             </div>
             <h2 class="font-handwriting text-pink mb-3">จำได้ไหมว่า...</h2>
-            <p class="text-muted mb-4">เราเริ่มคบกันวันที่เท่าไหร่กันน้าาา ?</p>
+            <p class="text-muted mb-4 fs-3">เราเริ่มคบกันวันที่เท่าไหร่กันน้าาา ?</p>
             <div class="mb-4">
-                <DatePicker input-class="form-control text-center" v-model="selectedDate" dateFormat="dd MM yy"
+                <DatePicker input-class="form-control text-center fs-4" v-model="selectedDate" dateFormat="dd MM yy"
                     placeholder="เลือกวันที่ของเรา" class="w-100" :touchUI="true" />
             </div>
 
-            <Button label="ยืนยันคำตอบ ❤️" class="p-button-rounded p-button-pink w-100 py-3 shadow"
+            <Button label="ยืนยันคำตอบ ❤️" class="p-button-rounded p-button-pink w-100 py-3 shadow fs-4"
                 @click="checkAnswer" />
 
             <transition name="fade">
