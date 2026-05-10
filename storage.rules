@@ -1,0 +1,24 @@
+rules_version = '2';
+
+// แก้ REPLACE_ADMIN_EMAIL@gmail.com ให้เป็นอีเมล Google จริง (ต้องตรงกับ VITE_GALLERY_ADMIN_EMAILS)
+// หลายคน: เพิ่มบรรทัด || request.auth.token.email == 'อีเมล2@gmail.com' ในทุกเงื่อนไข
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isGalleryAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'REPLACE_ADMIN_EMAIL@gmail.com';
+    }
+
+    match /gallery-images/{galleryId}/{photoFile} {
+      allow read: if true;
+      allow write: if isGalleryAdmin()
+        && (
+          request.resource == null
+          || (
+            request.resource.size < 15 * 1024 * 1024
+            && request.resource.contentType.matches('image/.*')
+          )
+        );
+    }
+  }
+}

@@ -28,6 +28,15 @@ coverage
 
 .eslintcache
 
+# Env files (ค่าจริงไม่ขึ้น git — ใช้ .env.sample เป็นแม่แบบ; production ใช้ .env.production ในเครื่อง หรือ GitHub Secrets ตอน build)
+.env
+.env.*
+!.env.sample
+
+# Windows: ชื่อสงวน ห้ามสร้างไฟล์นี้ (redirect ผิดเช่น 2>nul ในบางคำสั่ง)
+/nul
+nul
+
 # Cypress
 /cypress/videos/
 /cypress/screenshots/

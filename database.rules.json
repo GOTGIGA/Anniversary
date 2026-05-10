@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "memories": {
+      ".read": true,
+      ".write": true
+    },
+    "galleries": {
+      ".read": "auth != null && auth.token.email == 'REPLACE_ADMIN_EMAIL@gmail.com'",
+      ".write": "auth != null && auth.token.email == 'REPLACE_ADMIN_EMAIL@gmail.com'"
+    },
+    "galleryPhotos": {
+      ".read": true,
+      ".write": "auth != null && auth.token.email == 'REPLACE_ADMIN_EMAIL@gmail.com'"
+    }
+  }
+}
